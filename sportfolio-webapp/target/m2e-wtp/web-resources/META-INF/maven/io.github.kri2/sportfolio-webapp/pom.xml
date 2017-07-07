@@ -12,6 +12,13 @@
   <name>portfolio-webapp Maven Webapp</name>
   <url>https://kri2.github.io</url>
   <dependencies>
+  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<!-- needed for: @Controller -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
   </dependencies>
   <!-- <parent>...</parent> -->
   <!-- <dependencyManagement>...</dependencyManagement> -->

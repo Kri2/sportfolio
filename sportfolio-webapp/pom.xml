@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- The Basics -->
+  <groupId>io.github.kri2</groupId>
+  <artifactId>portfolio-project</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>portfolio-project Maven Webapp</name>
+  <url>https://kri2.github.io</url>
+  <dependencies>
+  </dependencies>
+  <!-- <parent>...</parent> -->
+  <!-- <dependencyManagement>...</dependencyManagement> -->
+  <!-- <modules>...</modules> -->
+  <!-- <properties>...</properties> -->
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
+  <!-- Build Settings -->
+  <build>
+    <finalName>portfolio-project</finalName>
+  </build>
+  <!-- <reporting></reporting> -->
+  
+  <!-- More Project Information -->
+  <!-- <description>...</description> -->
+  <!-- <inceptionYear>...</inceptionYear> -->
+  <!-- <licenses>...</licenses> -->
+  <!-- <organization>...</organization> -->
+  <!-- <developers>...</developers> -->
+  <!-- <contributors>...</contributors> -->
+  
+  <!-- Environment Settings -->
+  <!-- <issueManagement>...</issueManagement> -->
+  <!-- <ciManagement>...</ciManagement> -->
+  <!-- <mailingLists>...</mailingLists> -->
+  <!-- <scm>...</scm> -->
+  <!-- <prerequisites>...</prerequisites> -->
+  <!-- <repositories>...</repositories> -->
+  <!-- <pluginRepositories>...</pluginRepositories> -->
+  <!-- <distributionManagement>...</distributionManagement> -->
+  <!-- <profiles>...</profiles> -->
+</project>

@@ -8,5 +8,7 @@
 </head>
 <body>
 	<p>Welcome!</p>
+	<p>Today's quote is:</p>
+	<p>${quote_from_rest}</p>
 </body>
 </html>

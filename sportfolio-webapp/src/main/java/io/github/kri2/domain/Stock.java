@@ -1,8 +1,16 @@
 package io.github.kri2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Stock {
+	
+	@JsonProperty("t")
 	String ticker;
+	@JsonProperty("l_cur")
 	Double price;
+	@JsonProperty("cp")
 	Double percentChange;
 	
 	

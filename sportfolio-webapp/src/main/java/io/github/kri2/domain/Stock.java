@@ -15,17 +15,20 @@ public class Stock {
 	
 	
 	public Stock(){
+		this.ticker="----";
+		this.price = 0.0;
+		this.percentChange = 0.0;
 	}
 	public Stock(String ticker){
 		this.ticker=ticker;
 		this.percentChange=0.0;
 		this.price = null;
 	}
-	public Stock(String ticker, Double price) {
+	public Stock(String ticker, Double price, Double percentChange) {
 		super();
 		this.price = price;
 		this.ticker = ticker;
-		this.percentChange = 0.0;
+		this.percentChange = percentChange;
 	}
 	public Double getPrice() {
 		return price;

@@ -15,37 +15,14 @@ import com.google.gson.Gson;
 
 import io.github.kri2.domain.PortfolioItem;
 import io.github.kri2.domain.Stock;
+import io.github.kri2.service.Download;
 
 @Controller
 public class WebController {
 	@RequestMapping("/welcome")
 	public String serveWelcome(Model model){
-		RestTemplate restTemplate = new RestTemplate(); 
-		String string="";
-		try{
-			string = restTemplate.getForObject("http://finance.google.com/finance/info?client=ig&q=AAPL", String.class);
-			string = string.replace("//","").replace("[","").replace("]","").replace("\n","").replace("\t","");
-			System.out.println(string);
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}
+		Download download = new Download();
 		
-		Gson gson = new Gson();
-        gson.toJson(string);
-        System.out.println(gson.toJson(string));
-        
-        
-        ObjectMapper mapper = new ObjectMapper();
-        Stock stock1;
-		try {
-			stock1 = mapper.readValue(string, Stock.class);
-			System.out.println(stock1.getPrice());
-			System.out.println(stock1.getTicker());
-			System.out.println(stock1.getPercentChange());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		
 		//LocalDate today = LocalDate.now();
@@ -53,9 +30,16 @@ public class WebController {
 		System.out.println(today);
 		/*Generating sample data for the view */
 		ArrayList<PortfolioItem> list = new ArrayList<>();
-		
+		//list.add(new PortfolioItem(stock, today, 0, 0.0));
+		ArrayList<String> tickerList = new ArrayList<>();
+		tickerList.add("AAPL");
+		tickerList.add("THRM");
+		tickerList.add("GOOG");
+		tickerList.add("CORE");
+		tickerList.add("SNDK");
 		for(int i=0;i<5;i++){
-			list.add(new PortfolioItem(new Stock("AAPL", 503.22), 
+			Stock stock = download.download(tickerList.get(i));
+			list.add(new PortfolioItem(stock, 
 					today.plus(i, ChronoUnit.WEEKS),
 					99+6*i,
 					400.08+9*i));

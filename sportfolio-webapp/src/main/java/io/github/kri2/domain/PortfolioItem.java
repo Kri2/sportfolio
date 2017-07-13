@@ -10,7 +10,7 @@ public class PortfolioItem extends Stock{
 	public PortfolioItem(){
 	}
 	public PortfolioItem(Stock stock, LocalDate datePurchased, Integer sharesCount, Double purchasePrice){
-		super(stock.ticker,stock.price);
+		super(stock.ticker,stock.price, stock.percentChange);
 		this.datePurchased = datePurchased;
 		this.sharesCount = sharesCount;
 		this.purchasePrice = purchasePrice;

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +10,7 @@
 <style>
 table{border-collapse:collapse;}
 table,th,td{border:1px solid gray;}
-td{width:80px;padding:4px 4px 4px 8px;}
+td{width:80px;padding:4px 4px 4px 8px;text-align:right;}
 </style>
 </head>
 <body>
@@ -28,6 +29,7 @@ td{width:80px;padding:4px 4px 4px 8px;}
 			<th>shares bought</th>
 			<th>purchase date</th>
 			<th>purchase price</th>
+			<th>value</th>
 		</tr>
 		
 		<c:forEach items="${portfolioList}" var="stockInfo">
@@ -39,7 +41,7 @@ td{width:80px;padding:4px 4px 4px 8px;}
 					<c:out value="$ ${stockInfo.price}"/>
 				</td>
 				<td>
-					<c:out value="${stockInfo.percentChange }%"/>
+					<c:out value="${stockInfo.percentChange}%"/>
 				</td>
 				<td>
 					<c:out value="${stockInfo.sharesCount}"/>
@@ -50,6 +52,9 @@ td{width:80px;padding:4px 4px 4px 8px;}
 				<td>
 					<c:out value="${stockInfo.purchasePrice}"/>
 				</td>
+				<td>
+					<!--<c:out value="$ ${stockInfo.price * stockInfo.sharesCount}"/> -->
+					<fmt:formatNumber type="currency" value="${stockInfo.price * stockInfo.sharesCount}" />
 			</tr>
 		</c:forEach>
 	</table>

@@ -1,0 +1,4 @@
+io/github/kri2/domain/User.class
+io/github/kri2/domain/PortfolioItem.class
+io/github/kri2/domain/UserDAO.class
+io/github/kri2/controllers/WebController.class

@@ -1,25 +1,36 @@
 package io.github.kri2.domain;
 
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity	//indicating that it is a JPA entity
-@Table(name="users")
+@Table(name="users2")
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="user_id")
 	Integer id;
 	String name;
 	String password;
-	String portfolio_items="";
-	public String getPortfolio_items() {
-		return portfolio_items;
+	@OneToMany(mappedBy = "owner",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	private List<PortfolioItem> portfolioItems; 
+	
+	
+	public List<PortfolioItem> getPortfolioItems() {
+		return portfolioItems;
 	}
-	public void setPortfolio_items(String portfolio_items) {
-		this.portfolio_items = portfolio_items;
+	public void setPortfolioItems(List<PortfolioItem> portfolioItems) {
+		this.portfolioItems = portfolioItems;
 	}
 	public User(){//The default constructor only exists for the sake of JPA. You won’t use it directly, so it is designated as protected. 
 	}
@@ -40,5 +51,26 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	/*
+	public void addItem(PortfolioItem item) {
+        this.portfolioItems.add(item);
+        if (item.getOwner() != this) {
+            item.setOwner(this);
+        }
+    }*/
+	public String toString(){
+		String str="";
+		//str += "id= "+ this.id;
+		str += "name= "+this.name+" ";
+		str += " pass= "+this.password+" ";
+		str += " portfolio: ";
+		for(int i=0;i<portfolioItems.size();i++)
+		{
+			str += portfolioItems.get(i).getTicker() + ":" +portfolioItems.get(i).getPrice()+" ";
+		}
+		//portfolioItems.forEach(var -> str += (var.getTicker()+var.getPrice()));
+		System.out.println(str);
+		return str;
 	}
 }

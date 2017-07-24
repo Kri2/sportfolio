@@ -10,16 +10,12 @@
 <style>td{min-width:20px;border:1px solid gray;}table{border-collapse:collapse;}</style>
 </head>
 <body>
-<!--  	${all}
-	${all.iterator().next().name} -->
-	<!--  
-	<c:forEach var="i" begin="0" end="4">
-		<c:out value="${all.get(i).getName() }"/>
-	</c:forEach>-->
+
 	<table>
 	<tr>
-			<th>id</th><th>name</th><th>password</th>
+			<th>id</th><th>name</th><th>password</th><th>portfolio</th>
 	</tr>
+	
 	<c:forEach items="${all}" var="item">
 		<tr>
 			<td>
@@ -29,6 +25,9 @@
 			</td>
 			<td>
 				<c:out value="${item.password }"/>
+			</td>
+			<td>
+				<!--<c:out value="${item.getPortfolioItems() }"/>-->
 			</td>
 		</tr>
 	</c:forEach>

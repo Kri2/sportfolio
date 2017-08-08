@@ -1,0 +1,7 @@
+/Users/kriz/Documents/workspace-sts-3.8.4.RELEASE/sportfolio/sportfolio-webapp/src/main/java/io/github/kri2/controllers/WebController.java
+/Users/kriz/Documents/workspace-sts-3.8.4.RELEASE/sportfolio/sportfolio-webapp/src/main/java/io/github/kri2/dataaccess/StockDao.java
+/Users/kriz/Documents/workspace-sts-3.8.4.RELEASE/sportfolio/sportfolio-webapp/src/main/java/io/github/kri2/domain/Stock.java
+/Users/kriz/Documents/workspace-sts-3.8.4.RELEASE/sportfolio/sportfolio-webapp/src/main/java/io/github/kri2/dataaccess/GoogleFinClient.java
+/Users/kriz/Documents/workspace-sts-3.8.4.RELEASE/sportfolio/sportfolio-webapp/src/main/java/io/github/kri2/domain/PortfolioItem.java
+/Users/kriz/Documents/workspace-sts-3.8.4.RELEASE/sportfolio/sportfolio-webapp/src/main/java/io/github/kri2/dataaccess/UserDao.java
+/Users/kriz/Documents/workspace-sts-3.8.4.RELEASE/sportfolio/sportfolio-webapp/src/main/java/io/github/kri2/domain/User.java

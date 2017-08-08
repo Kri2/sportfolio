@@ -1,0 +1,7 @@
+io/github/kri2/dataaccess/UserDao.class
+io/github/kri2/controllers/WebController.class
+io/github/kri2/dataaccess/GoogleFinClient.class
+io/github/kri2/domain/User.class
+io/github/kri2/domain/PortfolioItem.class
+io/github/kri2/domain/Stock.class
+io/github/kri2/dataaccess/StockDao.class

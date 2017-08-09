@@ -94,8 +94,10 @@ public class WebController {
 		return "welcome";
 	}
 	@RequestMapping(value="portfolio")
-	public String showPortfolio(@ModelAttribute("name") String name){
+	public String showPortfolio(@ModelAttribute("name") String name, Model model){
 		System.out.println("from showPortfolio: "+name);
+		User user = userDao.findByName(name);
+		model.addAttribute("portfolioItems",user.getPortfolioItems());
 		return "portfolio";
 	}
 	@RequestMapping(value="adduser")

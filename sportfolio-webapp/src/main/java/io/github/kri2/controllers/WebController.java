@@ -5,10 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import io.github.kri2.dataaccess.GoogleFinClient;
 import io.github.kri2.dataaccess.UserDao;
+import io.github.kri2.dataaccess.UserLogin;
 import io.github.kri2.domain.PortfolioItem;
 import io.github.kri2.domain.Stock;
 import io.github.kri2.domain.User;
@@ -28,10 +32,34 @@ public class WebController {
 		userDao.save(user);
 		return "welcome";
 	}
+	@RequestMapping(value="/start", method=RequestMethod.GET)
+	public String displayForm(Model model){
+		model.addAttribute("userForm", new UserLogin());
+		Boolean addUserButtonState = false;
+		model.addAttribute("addUserButton", addUserButtonState);
+		return "welcome";
+	}
+	@RequestMapping(value="/start", method=RequestMethod.POST)
+	public String processForm(@ModelAttribute("userForm") UserLogin userLogin, 
+								Model model){
+		System.out.println(userLogin.getName());
+		String result="";
+		if( userDao.findByName(userLogin.getName()) != null){
+			//result="Welcome back "+userLogin.getName();//when on the same page
+			model.addAttribute("name", userLogin.getName());
+			return "redirect:/portfolio";
+		}
+		else{
+			result="sorry no such user found";
+			model.addAttribute("result", result);
+			return "welcome";
+		}
+	}
 	@RequestMapping("/welcome")
-	public String serveWelcome(){
+	public String serveWelcome(Model model){
 		/*display login page based on user name provided load his portfolio */
-		/* STEP 1 get portfolio data from db for particular user*/
+		/* STEP 1 get portfolio data from db for particular user or create new user*/
+		
 		//creating dummy user
 		User user = new User();
 		user.setName("Krzysztof");
@@ -64,5 +92,14 @@ public class WebController {
 		/* add ability to add/remove stocks from portfolio */
 		/* add ability to create/delete user/portfolio */
 		return "welcome";
+	}
+	@RequestMapping(value="portfolio")
+	public String showPortfolio(@ModelAttribute("name") String name){
+		System.out.println("from showPortfolio: "+name);
+		return "portfolio";
+	}
+	@RequestMapping(value="adduser")
+	public String addUserForm(){
+		return "adduser";
 	}
 }

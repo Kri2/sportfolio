@@ -6,17 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome</title>
+<title>Your portfolio</title>
 </head>
 <body>
-	<p>Welcome!</p>
-	<form:form method="POST" modelAttribute="userForm">
-		<form:input type="text" path="name"/>
-		<form:input type="password" path="password"/>
-		<input type="submit" value="submit"/>
-	</form:form>
-	<h2>${result }</h2>
-	your name: ${name }
-	<a href="<c:url value="adduser"/>">Add new user</a>
+	<p>Welcome back ${name}</p>
+	Your Portfolio:
 </body>
 </html>

@@ -1,0 +1,6 @@
+io/github/kri2/domain/User.class
+io/github/kri2/dao/UserDaoImpl.class
+io/github/kri2/controllers/LoginController.class
+io/github/kri2/controllers/WebController.class
+io/github/kri2/dao/UserDao.class
+io/github/kri2/dto/UserDto.class

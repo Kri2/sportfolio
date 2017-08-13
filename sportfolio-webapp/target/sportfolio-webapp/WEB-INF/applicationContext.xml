@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+ http://www.springframework.org/schema/mvc 
+ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+ http://www.springframework.org/schema/beans 
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+ http://www.springframework.org/schema/context 
+ http://www.springframework.org/schema/context/spring-context-4.0.xsd
+ http://www.springframework.org/schema/tx
+ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<!-- is used to determine the search of specific beans and attempt of autowiring. -->
+	<context:component-scan base-package="io.github.kri2" />
+	<!-- The ViewResolver maps view names to actual views -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix"><value>/WEB-INF/views/</value></property>
+		<property name="suffix"><value>.jsp</value></property>
+	</bean>
+	<!-- for JPA start -->
+	<!-- Database connection settings -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://localhost:3306/sportfolio" />
+	    <property name="username" value="root" />
+	    <property name="password" value="" />
+	</bean>
+	
+	<bean id="entityManagerFactory"
+	 class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	    <property name="dataSource" ref="dataSource" />
+	    <property name="packagesToScan" value="io.github.kri2" />
+	    <property name="jpaVendorAdapter">
+	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+	            <!-- Echo all executed SQL to stdout -->
+	            <property name="showSql" value="true" />
+	            <!-- SQL dialect -->
+	            <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+	            <!--   <property name="databasePlatform" value="org.hibernate.dialect.MySQLMyISAMDialect" />-->
+	        </bean>
+	    </property>
+	    <property name="jpaProperties">
+	        <props>
+	        	<!-- Then Hibernate checks for the table. If table doesn’t exist then it creates a new table -->
+	            <prop key="hibernate.hbm2ddl.auto">update</prop>
+	            <!-- <prop key="hibernate.hbm2ddl.auto">create</prop>-->
+	        </props>
+	    </property>
+	</bean>
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	    <property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<!-- for JPA end -->
+</beans>

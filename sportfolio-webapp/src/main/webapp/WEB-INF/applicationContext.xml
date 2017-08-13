@@ -14,9 +14,11 @@
 	
 	<!-- is used to determine the search of specific beans and attempt of autowiring. -->
 	<context:component-scan base-package="io.github.kri2" />
+	
 	<!-- The ViewResolver maps view names to actual views -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix"><value>/WEB-INF/views/</value></property>
 		<property name="suffix"><value>.jsp</value></property>
 	</bean>
+	
 </beans>

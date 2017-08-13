@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Your portfolio</title>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-<style>th{color:gray;}body{font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;}</style>
+<style>th{color:gray;font-weight:normal;}td{padding:2px 4px;}body{font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;}</style>
 </head>
 <body>
 	<p>Welcome back ${name}</p>
@@ -31,7 +31,7 @@
 					<c:out value="${stockInfo.ticker}"/>
 				</td>
 				<td>
-					<c:out value="$ ${stockInfo.price}"/>
+					<fmt:formatNumber type="currency" value="${stockInfo.price}"/>
 				</td>
 				<td>
 					<c:out value="${stockInfo.changeP}%"/>
@@ -39,5 +39,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="<c:url value="addportfolioitem" />">add portfolio item</a>
 </body>
 </html>

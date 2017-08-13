@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import io.github.kri2.dataaccess.GoogleFinClient;
+import io.github.kri2.dataaccess.TickerByUser;
 import io.github.kri2.dataaccess.UserDao;
 import io.github.kri2.dataaccess.UserLogin;
 import io.github.kri2.domain.PortfolioItem;
@@ -21,7 +22,7 @@ import io.github.kri2.domain.User;
 public class WebController {
 	@Autowired
 	UserDao userDao;
-	
+	String nameGlobal;
 	@RequestMapping("/makeuser")
 	public String serveMake(){
 		User user = new User();
@@ -43,6 +44,7 @@ public class WebController {
 	public String processForm(@ModelAttribute("userForm") UserLogin userLogin, 
 								Model model){
 		System.out.println(userLogin.getName());
+		nameGlobal = userLogin.getName();
 		String result="";
 		if( userDao.findByName(userLogin.getName()) != null){
 			//result="Welcome back "+userLogin.getName();//when on the same page
@@ -96,12 +98,38 @@ public class WebController {
 	@RequestMapping(value="portfolio")
 	public String showPortfolio(@ModelAttribute("name") String name, Model model){
 		System.out.println("from showPortfolio: "+name);
-		User user = userDao.findByName(name);
+		//User user = userDao.findByName(name);
+		User user = userDao.findByName(nameGlobal);
 		model.addAttribute("portfolioItems",user.getPortfolioItems());
 		return "portfolio";
 	}
-	@RequestMapping(value="adduser")
-	public String addUserForm(){
+	@RequestMapping(value="adduser",method=RequestMethod.GET)
+	public String addUserForm(Model model){
+		model.addAttribute("userCredentials", new UserLogin());
 		return "adduser";
+	}
+	@RequestMapping(value="adduser",method=RequestMethod.POST)
+	public String addUserFormHandle(@ModelAttribute("userCredentials") UserLogin userLogin){
+		User user = new User();
+		user.setName(userLogin.getName());
+		user.setPassword(userLogin.getPassword());
+		userDao.save(user);
+		return "redirect:/portfolio";
+	}
+	@RequestMapping(value="addportfolioitem", method=RequestMethod.GET)
+	public String addItemForm(Model model){
+		model.addAttribute("addItemForm", new TickerByUser());
+		return "addportfolioitem";
+	}
+	@RequestMapping(value="addportfolioitem", method=RequestMethod.POST)
+	public String addItemFormHandle(@ModelAttribute("addItemForm") TickerByUser tickerByUser){
+		//PortfolioItem portfolioItem= new PortfolioItem();
+		//portfolioItem.setTicker(tickerByUser.getTicker());
+		//need to know which user was it for. How? Need to know which user is logged on
+		//spring security needed? For now use clumsy solution
+		User user = userDao.findByName(nameGlobal);
+		user.addPortfolioItem(tickerByUser.getTicker());
+		userDao.save(user);//powinno być update raczej, ale jeszcze nie wiem jak
+		return "redirect:/portfolio";
 	}
 }

@@ -10,8 +10,8 @@
 </head>
 <body>
 	<form:form method="POST" modelAttribute="addItemForm">
-		<form:input type="text" path="ticker"/>
-		<form:input type="text" path="sharesCount"/>
+		<form:input type="text" path="ticker" placeholder="ticker"/>
+		<form:input type="text" path="sharesCount" placeholder="how many shares"/>
 		<input type="submit" value="submit"/>
 	</form:form>
 </body>

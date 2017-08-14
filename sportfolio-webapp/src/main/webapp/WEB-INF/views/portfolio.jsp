@@ -14,6 +14,7 @@
 </head>
 <body>
 	<p>Welcome back ${name}</p>
+	<p>You are logged as ${whoIsLoggedIn }</p>
 	Your Portfolio:
 	<table>
 		<tr>

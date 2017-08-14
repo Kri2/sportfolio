@@ -23,6 +23,7 @@ public class User {
 	Long id;
 	String name;
 	String password;
+	Boolean enabled;
 	@OneToMany(mappedBy = "owner",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<PortfolioItem> portfolioItems = new ArrayList<>(); 
 	public void addPortfolioItem(String ticker){
@@ -60,6 +61,14 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	/*
 	public void addItem(PortfolioItem item) {
         this.portfolioItems.add(item);

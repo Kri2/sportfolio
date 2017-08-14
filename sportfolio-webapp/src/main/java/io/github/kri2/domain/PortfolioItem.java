@@ -29,10 +29,15 @@ public class PortfolioItem {
 	//@ManyToOne(fetch=FetchType.EAGER)
 	//@JoinColumn(name="user_id",nullable=false)
 	@ManyToOne()
-	@JoinColumn(name="user_id",nullable=false)
+	@JoinColumn(name="user_id",nullable=true)
 	User owner;
 	
 	public PortfolioItem(){
+	}
+	public PortfolioItem(String ticker){
+		this.ticker=ticker;
+		this.price=0.0;
+		this.changep=0.0;
 	}
 	public String getTicker() {
 		return ticker;

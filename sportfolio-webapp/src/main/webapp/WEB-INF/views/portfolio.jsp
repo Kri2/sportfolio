@@ -15,6 +15,7 @@
 <body>
 	<p>Welcome back ${name}</p>
 	<p>You are logged as ${whoIsLoggedIn }</p>
+	<p><a href="<c:url value="index.jsp"/>">Home</a>
 	Your Portfolio:
 	<table>
 		<tr>

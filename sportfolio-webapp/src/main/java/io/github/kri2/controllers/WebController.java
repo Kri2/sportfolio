@@ -19,29 +19,20 @@ import io.github.kri2.dataaccess.UserLogin;
 import io.github.kri2.domain.PortfolioItem;
 import io.github.kri2.domain.Stock;
 import io.github.kri2.domain.User;
+import io.github.kri2.service.GoogleFinService;
 
 @Controller
 public class WebController {
 	@Autowired
 	UserDao userDao;
 	String nameGlobal;
-	@RequestMapping("/makeuser")
-	public String serveMake(){
-		User user = new User();
-		user.setName("Krzysztof");
-		user.setPassword("hasłoKrzyśka");
-		user.addPortfolioItem("THRM");
-		user.addPortfolioItem("DAL");
-		userDao.save(user);
-		return "welcome";
-	}
+	
 	@RequestMapping(value="/start", method=RequestMethod.GET)
 	public String displayForm(Model model){
 		model.addAttribute("userForm", new UserLogin());
-		Boolean addUserButtonState = false;
-		model.addAttribute("addUserButton", addUserButtonState);
 		return "welcome";
 	}
+	/*this was for login, when spring security hadn't been set up yet*/
 	@RequestMapping(value="/start", method=RequestMethod.POST)
 	public String processForm(@ModelAttribute("userForm") UserLogin userLogin, 
 								Model model){
@@ -61,40 +52,6 @@ public class WebController {
 	}
 	@RequestMapping("/welcome")
 	public String serveWelcome(Model model){
-		/*display login page based on user name provided load his portfolio */
-		/* STEP 1 get portfolio data from db for particular user or create new user*/
-		
-		//creating dummy user
-		User user = new User();
-		user.setName("Krzysztof");
-		//provide user to database check if present if yes load porfolioItems
-		user = userDao.findByName(user.getName()); //now user data is loaded from database
-		
-		/* STEP 2 using tickers list from portfolio get data from google */
-		for(PortfolioItem item : user.getPortfolioItems()){
-			String currentTicker = item.getTicker();
-			System.out.println("Getting info about "+currentTicker);
-			
-			GoogleFinClient googleFinClient = new GoogleFinClient();
-			Stock stock = googleFinClient.getStock(currentTicker);
-			System.out.println("Result: "+stock.toString());
-			//tutaj zrobić mapping do stock
-			//dalej przypisać ściągnięty stock do portfolioitem
-			item.setPrice( Double.valueOf(stock.getPrice()) );
-			item.setChangeP( Double.valueOf(stock.getCp()) );
-		}
-		//teraz można to wyświetlić a także wpisać uaktualnione dane do bazy danych
-		
-		// zapis uaktualnionych danych
-		userDao.save(user);
-		
-		//now we have list of stocks same to database one, but downloaded from google api
-		//we can display them and update portfolio item
-		//now need to prepare some kind of structure which i can pass to the model and jsp 
-		
-		/* STEP 3 Display portfolio summary */
-		/* add ability to add/remove stocks from portfolio */
-		/* add ability to create/delete user/portfolio */
 		return "welcome";
 	}
 	@RequestMapping(value="portfolio")
@@ -105,20 +62,24 @@ public class WebController {
 		String authName = auth.getName();
 		model.addAttribute("whoIsLoggedIn", authName);
 
-		//User user = userDao.findByName(name);
-		User user = userDao.findByName(authName);
+		User user = userDao.findByName(authName); 
+		System.out.println("authname: "+authName);//tu jest problem authName jeszcze nie działa bo mój login nie jest połaczony ze spring security
+		//need to log in two places before can use this
+		
 		if(user.getPortfolioItems()!=null){
+			/* STEP 2 using tickers list from portfolio get data from google */
+			user = GoogleFinService.updateData(user);
 			model.addAttribute("portfolioItems",user.getPortfolioItems());
 		}
 		else{
 			List<PortfolioItem> portfolioItems = new ArrayList<>(); 
-			portfolioItems.add(new PortfolioItem("DUMMY"));
+			portfolioItems.add(new PortfolioItem("AAPL"));
 			model.addAttribute("portfolioItems", portfolioItems);
 		}
-			
-			 
+				 
 		return "portfolio";
 	}
+	// adduser start
 	@RequestMapping(value="adduser",method=RequestMethod.GET)
 	public String addUserForm(Model model){
 		model.addAttribute("userCredentials", new UserLogin());
@@ -137,6 +98,7 @@ public class WebController {
 		userDao.save(user);
 		return "redirect:/portfolio";
 	}
+	//adduser end
 	@RequestMapping(value="addportfolioitem", method=RequestMethod.GET)
 	public String addItemForm(Model model){
 		model.addAttribute("addItemForm", new TickerByUser());

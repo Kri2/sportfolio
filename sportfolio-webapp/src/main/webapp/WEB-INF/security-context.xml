@@ -26,7 +26,7 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
     	</authentication-provider>
     </authentication-manager>
     
-    <!-- Database connection settings -->
+    <!-- Database connection settings moved here from applicationContext.xml so spring security can access it-->
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 	    <beans:property name="url" value="jdbc:mysql://localhost:3306/sportfolio" />

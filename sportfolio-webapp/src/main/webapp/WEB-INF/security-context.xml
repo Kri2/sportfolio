@@ -7,24 +7,22 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-    <http auto-config="true">
-    </http>
-	<!-- this authentication-manager with explicit passwords is only for testing -->
-    <!--  
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="kobietydokodu" password="jakieshaslo" authorities="ROLE_USER" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>-->
-    <!-- this authentication manager is using database stored passwords -->
-    <authentication-manager>
-    	<authentication-provider>
-    		<jdbc-user-service data-source-ref="dataSource" users-by-username-query="SELECT name, password,enabled FROM users3 WHERE name=?" authorities-by-username-query=
-     "SELECT name, 'ROLE_USER' FROM users3 WHERE name =?  " />
-    	</authentication-provider>
-    </authentication-manager>
+<http auto-config="true" use-expressions="true">
+  <form-login login-page="/login" default-target-url="/portfolio" authentication-failure-url="/login?error=1"
+  username-parameter="name" password-parameter="password"/>
+  <logout logout-success-url="/" /> <!-- określamy przekierowanie po wylogowaniu -->
+  <csrf /> <!-- włączamy zabezpieczenie przed csrf -->
+</http> 
+
+<authentication-manager>
+  <authentication-provider>
+    <jdbc-user-service 
+	    data-source-ref="dataSource" 
+	    users-by-username-query="SELECT name, password,enabled FROM users3 WHERE name=?" 
+	    authorities-by-username-query="SELECT name, 'ROLE_USER' FROM users3 WHERE name=?" 
+	/>
+  </authentication-provider>
+</authentication-manager>
     
     <!-- Database connection settings moved here from applicationContext.xml so spring security can access it-->
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

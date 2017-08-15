@@ -27,12 +27,7 @@
 		<property name="suffix"><value>.jsp</value></property>
 	</bean>
 	<!-- for JPA start -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	    <property name="url" value="jdbc:mysql://localhost:3306/sportfolio" />
-	    <property name="username" value="root" />
-	    <property name="password" value="" />
-	</bean>
+	
 	
 	<bean id="entityManagerFactory"
 	 class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -40,13 +35,16 @@
 	    <property name="packagesToScan" value="io.github.kri2" />
 	    <property name="jpaVendorAdapter">
 	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+	            <!-- Echo all executed SQL to stdout -->
 	            <property name="showSql" value="true" />
-	             <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
-	           <!--   <property name="databasePlatform" value="org.hibernate.dialect.MySQLMyISAMDialect" />-->
+	            <!-- SQL dialect -->
+	            <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+	            <!--   <property name="databasePlatform" value="org.hibernate.dialect.MySQLMyISAMDialect" />-->
 	        </bean>
 	    </property>
 	    <property name="jpaProperties">
 	        <props>
+	        	<!-- Then Hibernate checks for the table. If table doesn’t exist then it creates a new table -->
 	            <prop key="hibernate.hbm2ddl.auto">update</prop>
 	            <!-- <prop key="hibernate.hbm2ddl.auto">create</prop>-->
 	        </props>

@@ -66,12 +66,13 @@ public class WebController {
 		System.out.println("authname: "+authName);//tu jest problem authName jeszcze nie działa bo mój login nie jest połaczony ze spring security
 		//need to log in two places before can use this
 		
-		if(user.getPortfolioItems()!=null){
+		if(user!=null && user.getPortfolioItems()!=null){
 			/* STEP 2 using tickers list from portfolio get data from google */
 			user = GoogleFinService.updateData(user);
 			model.addAttribute("portfolioItems",user.getPortfolioItems());
 		}
 		else{
+			System.out.println("no user account found");
 			List<PortfolioItem> portfolioItems = new ArrayList<>(); 
 			portfolioItems.add(new PortfolioItem("AAPL"));
 			model.addAttribute("portfolioItems", portfolioItems);
@@ -117,5 +118,10 @@ public class WebController {
 		user.addPortfolioItem(tickerByUser.getTicker());
 		userDao.save(user);//powinno być update raczej, ale jeszcze nie wiem jak
 		return "redirect:/portfolio";
+	}
+	
+	@RequestMapping(value="login")
+	public String displayLoginForm(){
+		return "login";
 	}
 }

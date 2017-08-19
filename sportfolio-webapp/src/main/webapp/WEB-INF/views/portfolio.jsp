@@ -40,7 +40,7 @@
 					<c:out value="${stockInfo.changeP}%"/>
 				</td>
 				<td>
-					<a href="">x</a>
+					<a href="<c:url value="/remove/${whoIsLoggedIn}/${stockInfo.ticker}"/>">x</a>
 				</td>
 			</tr>
 		</c:forEach>

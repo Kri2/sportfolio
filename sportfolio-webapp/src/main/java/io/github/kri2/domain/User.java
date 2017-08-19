@@ -24,7 +24,17 @@ public class User {
 	String name;
 	String password;
 	Boolean enabled;
-	@OneToMany(mappedBy = "owner",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	/**
+	 * The meaning of CascadeType.ALL is that the persistence will propagate (cascade) all 
+	 * EntityManager operations (PERSIST, REMOVE, REFRESH, MERGE, DETACH) to the relating 
+	 * entities.
+	 * Marking a reference field with CascadeType.REMOVE (or CascadeType.ALL, which includes 
+	 * REMOVE) indicates that remove operations should be cascaded automatically to entity 
+	 * objects that are referenced by that field (multiple entity objects can be referenced 
+	 * by a collection field):
+	 * orphanRmoval - removes childs when parent deleted
+	 */
+	@OneToMany(mappedBy = "owner",cascade=CascadeType.ALL,fetch=FetchType.EAGER, orphanRemoval=true)
 	private List<PortfolioItem> portfolioItems = new ArrayList<>(); 
 	public void addPortfolioItem(String ticker){
 		PortfolioItem portfolioItem = new PortfolioItem();

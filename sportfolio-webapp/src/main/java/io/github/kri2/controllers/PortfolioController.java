@@ -68,5 +68,8 @@ public class PortfolioController {
 		userDao.save(user);//powinno być update raczej, ale jeszcze nie wiem jak
 		return "redirect:/portfolio";
 	}
-
+	@RequestMapping(value="remove")
+	public String remove(){
+		return "portfolio";
+	}
 }

@@ -26,6 +26,7 @@
 			<th>purchase date</th>
 			<th>purchase price</th>
 			<th>value</th>
+			<th>remove</th>
 		</tr>
 		<c:forEach items="${portfolioItems}" var="stockInfo">
 			<tr>
@@ -38,9 +39,13 @@
 				<td>
 					<c:out value="${stockInfo.changeP}%"/>
 				</td>
+				<td>
+					<a href="">x</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="<c:url value="addportfolioitem" />">add portfolio item</a>
+	<a href="<c:url value="/addportfolioitem" />">add portfolio item</a>
+	<a href="<c:url value="/logout" />">Logout</a>
 </body>
 </html>

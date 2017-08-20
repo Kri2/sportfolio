@@ -43,6 +43,9 @@ public class WebController {
 	public String serveWelcome(Model model){
 		return "welcome";
 	}
-		
+	@RequestMapping("/")
+	public String serveIndex(Model model){
+		return "index";
+	}	
 	
 }

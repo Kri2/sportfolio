@@ -26,6 +26,11 @@
 		<property name="prefix"><value>/WEB-INF/views/</value></property>
 		<property name="suffix"><value>.jsp</value></property>
 	</bean>
+	
+	<mvc:resources mapping="/resources/**" location="/resources/"
+	cache-period="31556926"/>
+	<!-- later could separate tyles into separate folders and change easly -->
+	<!-- like this: location="/resources/theme1/" -->
 	<!-- for JPA start -->
 	
 	

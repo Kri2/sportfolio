@@ -6,16 +6,13 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Your portfolio</title>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-<style>th{color:gray;font-weight:normal;}td{padding:2px 4px;}body{font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;}</style>
-</head>
-<body>
-	<p>Welcome back ${name}</p>
+<jsp:include page="/WEB-INF/views/header.jsp" />
+<div class="container">
+	<c:if test="${whoIsLoggedIn!=''}">
+		<p>Please login first.</p>
+	</c:if>
+	<c:if test="${whoIsLoggedIn=='' }">
 	<p>You are logged as ${whoIsLoggedIn }</p>
-	<p><a href="<c:url value="index.jsp"/>">Home</a>
 	Your Portfolio:
 	<table>
 		<tr>
@@ -45,7 +42,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="<c:url value="/addportfolioitem" />">add portfolio item</a>
-	<a href="<c:url value="/logout" />">Logout</a>
+	<br />
+	<a href="<c:url value="/addportfolioitem" />" class="btn btn-outline-primary">add portfolio item</a>
+	<a href="<c:url value="/logout" />" class="btn btn-outline-primary">Logout</a>
+	</c:if>
+</div>
 </body>
 </html>

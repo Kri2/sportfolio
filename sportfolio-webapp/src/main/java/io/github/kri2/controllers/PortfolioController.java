@@ -30,6 +30,9 @@ public class PortfolioController {
 		//show logged user name
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String authName = auth.getName();
+		if(authName == null){ //no user is loggedin
+			authName="";
+		}
 		model.addAttribute("whoIsLoggedIn", authName);
 
 		User user = userDao.findByName(authName); 

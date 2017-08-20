@@ -4,22 +4,23 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>custom login page</title>
-</head>
-<body>
-<h1>Welcome!</h1>
-<p>please type in your username and password to see your portfolio or 
-<a href="<c:url value="/adduser"/>">Register</a>
-as new user</p>
-<c:set var="loginUrl"><c:url value="/login"/></c:set>
-<form method="post" action="${loginUrl}">
-    <input type="text" name="name" />
-    <input type="password" name="password" />
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <input type="submit" value="Zaloguj" />
-</form>
 
+
+<jsp:include page="/WEB-INF/views/header.jsp" />
+
+<div class="container">
+<c:set var="loginUrl"><c:url value="/login"/></c:set>
+<h2 style="text-align:center">Welcome!</h2>
+<form method="post" action="${loginUrl}" class="card card-container form-signin">
+	<p>Please type in your username and password to see your portfolio or 
+	<a href="<c:url value="/adduser"/>">Register</a>
+	as new user</p>
+
+    <input type="text" name="name" class="form-control" placeholder="Your Name"/>
+    <input type="password" name="password" class="form-control" placeholder="Password"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" class="form-control"/>
+    <input type="submit" value="login" class="btn btn-default"/>
+</form>
+</div>
 </body>
 </html>

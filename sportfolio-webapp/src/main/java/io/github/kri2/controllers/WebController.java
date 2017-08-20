@@ -1,6 +1,8 @@
 package io.github.kri2.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,6 +47,9 @@ public class WebController {
 	}
 	@RequestMapping("/")
 	public String serveIndex(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String authName = auth.getName();
+		model.addAttribute("whoIsLoggedIn", authName);
 		return "index";
 	}	
 	

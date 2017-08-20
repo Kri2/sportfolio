@@ -25,7 +25,12 @@
       <li class="active mojnav"><a href="<c:url value="/"/>">Home</a></li>
       <li><a href="<c:url value="portfolio"/>">Your portfolio</a></li>
       <li><a href="<c:url value="adduser"/>">Register</a></li>
+      <c:if test="${(whoIsLoggedIn=='anonymousUser') || (whoIsLoggedIn=='')}">
       <li><a href="<c:url value="login"/>">Login</a></li>
+      </c:if>
+      <c:if test="${(whoIsLoggedIn!='anonymousUser') && (whoIsLoggedIn!='')}">
+      <li><a href="<c:url value="logout"/>">Logout</a></li>
+      </c:if>
     </ul>
   </div>
 </nav>

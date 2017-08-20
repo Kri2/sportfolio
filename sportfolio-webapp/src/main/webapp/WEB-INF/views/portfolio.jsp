@@ -8,10 +8,10 @@
 <html>
 <jsp:include page="/WEB-INF/views/header.jsp" />
 <div class="container">
-	<c:if test="${whoIsLoggedIn!=''}">
+	<c:if test="${whoIsLoggedIn=='' || whoIsLoggedIn=='anonymousUser'}">
 		<p>Please login first.</p>
 	</c:if>
-	<c:if test="${whoIsLoggedIn=='' }">
+	<c:if test="${whoIsLoggedIn!='' && whoIsLoggedIn!='anonymousUser' }">
 	<p>You are logged as ${whoIsLoggedIn }</p>
 	Your Portfolio:
 	<table>

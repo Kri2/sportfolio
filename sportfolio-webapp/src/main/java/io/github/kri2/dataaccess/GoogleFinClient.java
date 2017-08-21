@@ -33,7 +33,9 @@ public class GoogleFinClient implements StockDao {
 			System.out.println(string);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
+			return null;
 		}
+		
 		
 		
 		//finally decided to to this way, not practical but proves the point -> get it as string, convert to json, mapp json to an object 

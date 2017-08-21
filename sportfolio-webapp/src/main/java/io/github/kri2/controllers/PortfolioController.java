@@ -42,7 +42,11 @@ public class PortfolioController {
 		if(user!=null && user.getPortfolioItems()!=null){
 			/* STEP 2 using tickers list from portfolio get data from google */
 			user = GoogleFinService.updateData(user);
-			model.addAttribute("portfolioItems",user.getPortfolioItems());
+			if(user != null){//data was succesfully downloaded from Google fin
+				model.addAttribute("portfolioItems",user.getPortfolioItems());
+			}else{//wasn't able to download data from Google fin
+				//TODO: user will never be null, if data is not downloaded there will historical data loaded
+			}
 		}
 		else{
 			System.out.println("no user account found");

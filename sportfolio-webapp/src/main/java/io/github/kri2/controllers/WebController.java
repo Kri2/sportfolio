@@ -52,5 +52,4 @@ public class WebController {
 		model.addAttribute("whoIsLoggedIn", authName);
 		return "index";
 	}	
-	
 }

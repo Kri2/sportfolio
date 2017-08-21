@@ -18,7 +18,9 @@ public class UserController {
 	@Autowired
 	UserDao userDao;
 	@RequestMapping(value="login")
-	public String displayLoginForm(){
+	public String displayLoginForm(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("whoIsLoggedIn", auth.getName());
 		return "login";
 	}
 	// adduser start

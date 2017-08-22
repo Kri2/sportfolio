@@ -29,11 +29,24 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 </authentication-manager>
     
     <!-- Database connection settings moved here from applicationContext.xml so spring security can access it-->
+	<!-- This is first version of my dataSource, doesn't use connection pool 
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 	    <beans:property name="url" value="jdbc:mysql://localhost:3306/sportfolio" />
 	    <beans:property name="username" value="root" />
 	    <beans:property name="password" value="" />
-	</beans:bean>
+	</beans:bean> -->
+	<!-- Employee DB data source. -->
+ <beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	 <beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
+	 <beans:property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sportfolio" />
+	 <beans:property name="user" value="root" />
+	 <beans:property name="password" value="" />
+	 <beans:property name="maxPoolSize" value="10" />
+	 <beans:property name="minPoolSize" value="4" />
+	 <beans:property name="maxStatements" value="100" />
+	 <beans:property name="testConnectionOnCheckout" value="true" />
+ </beans:bean>
+	
 
 </beans:beans>

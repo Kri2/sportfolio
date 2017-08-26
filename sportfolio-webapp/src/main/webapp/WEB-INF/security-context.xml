@@ -36,17 +36,31 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 	    <beans:property name="username" value="root" />
 	    <beans:property name="password" value="" />
 	</beans:bean> -->
-	<!-- Employee DB data source. -->
- <beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-	 <beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
-	 <beans:property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sportfolio" />
-	 <beans:property name="user" value="root" />
-	 <beans:property name="password" value="" />
-	 <beans:property name="maxPoolSize" value="10" />
-	 <beans:property name="minPoolSize" value="4" />
-	 <beans:property name="maxStatements" value="100" />
-	 <beans:property name="testConnectionOnCheckout" value="true" />
- </beans:bean>
-	
-
+	<!-- Employee DB data source. Set to work on localhost database-->
+	  
+	<beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		 <beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
+		 <beans:property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sportfolio" />
+		 <beans:property name="user" value="root" />
+		 <beans:property name="password" value="" />
+		 <beans:property name="maxPoolSize" value="10" />
+		 <beans:property name="minPoolSize" value="4" />
+		 <beans:property name="maxStatements" value="100" />
+		 <beans:property name="testConnectionOnCheckout" value="true" />
+	 </beans:bean>
+ 	
+ 	<!-- Employee DB data source. Set to work with AWS -->
+	<!--  
+	<beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	destroy-method="close">
+		<beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<beans:property name="jdbcUrl" value="jdbc:mysql://pierwsza-baza.cvqdkngdijei.us-east-2.rds.amazonaws.com:3306/pierwszabaza" />
+		<beans:property name="user" value="kriz" />
+		<beans:property name="password" value="Shadylandlord" />
+		<beans:property name="maxPoolSize" value="10" />
+		<beans:property name="minPoolSize" value="4" />
+		<beans:property name="maxStatements" value="100" />
+		<beans:property name="testConnectionOnCheckout" value="true" />
+	</beans:bean>
+	-->
 </beans:beans>

@@ -1,58 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Kriz_Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa23304d-5669-4212-942a-ffdc6c249a3e">
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	
-	<queryString language="SQL">
-		<![CDATA[SELECT name,password FROM sportfolio.users3 WHERE user_id="1"]]>
-	</queryString>
-	<field name="name" class="java.lang.String"/>
-	<field name="password" class="java.lang.String"/>
-	<field name="portfolioItems" class="java.util.List"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band height="79" splitType="Stretch">
-			<staticText>
-				<reportElement x="-12" y="10" width="100" height="30" uuid="724f04fc-b6ab-4730-810f-f9c4d846d684"/>
-				<text><![CDATA[Cześć, to ja raport!]]></text>
-			</staticText>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="47" splitType="Stretch">
-			<line>
-				<reportElement x="-20" y="20" width="595" height="27" uuid="f780fc8e-0d2e-44a8-baa3-343bdefc6fa5"/>
-			</line>
-		</band>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="20" width="100" height="30" uuid="b68e1d32-c3f1-45f3-a155-6a9dfcc2e2d0"/>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="50" width="100" height="30" uuid="74e8f336-dd64-43d4-84ea-f8ecbae9287f"/>
-				<textFieldExpression><![CDATA[$F{password}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="100" y="20" width="100" height="30" uuid="892003c8-7349-49d2-affb-024118343e05"/>
-				<textFieldExpression><![CDATA[$F{portfolioItems}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
+   <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+   <queryString language="SQL">
+   </queryString>
+   <field name="name" class="java.lang.String"/>
+   <field name="password" class="java.lang.String"/>
+   <field name="portfolioItems" class="java.util.List"/>
+   <background>
+      <band splitType="Stretch"/>
+   </background>
+   <title>
+      <band height="79" splitType="Stretch">
+         <staticText>
+            <reportElement x="-12" y="10" width="100" height="30" uuid="724f04fc-b6ab-4730-810f-f9c4d846d684"/>
+            <text><![CDATA[Cześć, to ja raport!]]></text>
+         </staticText>
+         <textField pattern="MMMMM dd, yyyy">
+            <reportElement x="460" y="0" width="100" height="30" uuid="b1dc34ed-b0b8-42db-8bc0-b007b106302e"/>
+            <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+         </textField>
+         <textField>
+            <reportElement x="360" y="30" width="100" height="30" uuid="fabedc1b-825e-4bad-ad7e-5c8ee0984368"/>
+            <textElement textAlignment="Right"/>
+            <textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+         </textField>
+         <textField evaluationTime="Report">
+            <reportElement x="460" y="30" width="100" height="30" uuid="17aa430c-7010-4327-a078-7f531578bbab"/>
+            <textElement textAlignment="Left"/>
+            <textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+         </textField>
+      </band>
+   </title>
+   <pageHeader>
+      <band height="47" splitType="Stretch">
+         <line>
+            <reportElement x="-20" y="20" width="595" height="27" uuid="f780fc8e-0d2e-44a8-baa3-343bdefc6fa5"/>
+         </line>
+      </band>
+   </pageHeader>
+   <detail>
+      <band height="230" splitType="Stretch">
+         <textField>
+            <reportElement x="0" y="20" width="100" height="30" uuid="b68e1d32-c3f1-45f3-a155-6a9dfcc2e2d0"/>
+            <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+         </textField>
+         <textField>
+            <reportElement x="0" y="50" width="100" height="30" uuid="74e8f336-dd64-43d4-84ea-f8ecbae9287f"/>
+            <textFieldExpression><![CDATA[$F{password}]]></textFieldExpression>
+         </textField>
+         <textField>
+            <reportElement x="100" y="20" width="100" height="30" uuid="892003c8-7349-49d2-affb-024118343e05"/>
+            <textFieldExpression><![CDATA[$F{portfolioItems}]]></textFieldExpression>
+         </textField>
+         <subreport>
+            <reportElement x="217" y="30" width="200" height="200" uuid="274835f7-117c-4182-bf95-42aac3f77d93"/>
+            <dataSourceExpression>
+            	<![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{portfolioItems})]]>
+            </dataSourceExpression>
+            <subreportExpression>
+            	<![CDATA["subreport_01.jasper"]]>
+            </subreportExpression>
+         </subreport>
+      </band>
+   </detail>
+   <pageFooter>
+      <band height="54" splitType="Stretch"/>
+   </pageFooter>
+   <summary>
+      <band height="62" splitType="Stretch">
+         <textField>
+            <reportElement x="470" y="30" width="100" height="30" uuid="8025c637-9364-4374-b75d-f9c8179c60fc"/>
+            <textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+         </textField>
+      </band>
+   </summary>
 </jasperReport>

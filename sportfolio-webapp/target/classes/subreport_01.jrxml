@@ -10,21 +10,21 @@
 		<band splitType="Stretch"/>
 	</background>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="30" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<textField>
-				<reportElement x="10" y="10" width="90" height="30" uuid="becd7ee4-e9ac-4a95-a974-5f638836fab9"/>
+				<reportElement x="10" y="10" width="60" height="20" uuid="becd7ee4-e9ac-4a95-a974-5f638836fab9"/>
 				<textFieldExpression><![CDATA[$F{ticker}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="10" y="40" width="90" height="30" uuid="aa91df60-806b-4d2a-9391-7f4fa98e9d6a"/>
+				<reportElement x="70" y="10" width="60" height="20" uuid="aa91df60-806b-4d2a-9391-7f4fa98e9d6a"/>
 				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="30" splitType="Stretch"/>
 	</pageFooter>
 </jasperReport>

@@ -14,7 +14,7 @@
       <band height="79" splitType="Stretch">
          <staticText>
             <reportElement x="-12" y="10" width="100" height="30" uuid="724f04fc-b6ab-4730-810f-f9c4d846d684"/>
-            <text><![CDATA[Cześć, to ja raport!]]></text>
+            <text><![CDATA[Hello. This is a summary of all portfolios!]]></text>
          </staticText>
          <textField pattern="MMMMM dd, yyyy">
             <reportElement x="460" y="0" width="100" height="30" uuid="b1dc34ed-b0b8-42db-8bc0-b007b106302e"/>

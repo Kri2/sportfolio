@@ -3,13 +3,10 @@ package io.github.kri2.dataaccess;
 public class UserLogin {
 	private String name;
 	private String password;
-	private Boolean buttonAddUser;
-	public Boolean getButtonAddUser() {
-		return buttonAddUser;
+	
+	public UserLogin(){
 	}
-	public void setButtonAddUser(Boolean buttonAddUser) {
-		this.buttonAddUser = buttonAddUser;
-	}
+
 	public String getName() {
 		return name;
 	}

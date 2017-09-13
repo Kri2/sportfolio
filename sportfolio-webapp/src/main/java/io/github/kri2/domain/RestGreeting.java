@@ -1,4 +1,4 @@
-package io.github.kri2.dataaccess;
+package io.github.kri2.domain;
 
 public class RestGreeting {
 	private final Long id;

@@ -3,6 +3,12 @@ package io.github.kri2.dataaccess;
 public class RestUser {
 	private Long id;
 	private String name;
+	
+	public RestUser(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	public Long getId() {
 		return id;
 	}

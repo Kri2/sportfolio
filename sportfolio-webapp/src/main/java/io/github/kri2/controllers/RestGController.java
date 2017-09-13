@@ -7,11 +7,15 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.kri2.dataaccess.RestPortfolioItem;
+import io.github.kri2.dataaccess.RestUser;
 import io.github.kri2.dataaccess.UserDao;
+import io.github.kri2.domain.PortfolioItem;
 import io.github.kri2.domain.RestGreeting;
 import io.github.kri2.domain.User;
 /**
@@ -33,15 +37,26 @@ public class RestGController {
 	public RestGreeting greeting(@RequestParam(value="name", defaultValue="World") String name){
 		return new RestGreeting(counter.incrementAndGet(), String.format(template, name));
 	}
-	
+	//Returns list of users
 	@RequestMapping("userslist")
-	public List<String> userList(){
+	public List<RestUser> userList(){
 		//Iterable<User> list = userDao.findAll();
 		Iterable<User> source = userDao.findAll();
-		List<String> names = new ArrayList<>();
-		source.iterator().forEachRemaining(n->{names.add(n.getName());});
+		List<RestUser> names = new ArrayList<>();
+		source.iterator().forEachRemaining(n->{names.add(new RestUser(n.getId(),n.getName()));});
 		//List<User> target = new ArrayList<>();
 		//source.iterator().forEachRemaining(target::add);
 		return names;
+	}
+	//returns desired user's portfolio contents
+	@RequestMapping("/{id}")
+	public List<RestPortfolioItem> portfolioItemsList(@PathVariable Long id){
+		User user = userDao.findById(id);
+		List<RestPortfolioItem> rpi = new ArrayList<>();
+		
+		user.getPortfolioItems().forEach(n->{
+			rpi.add(new RestPortfolioItem(n.getTicker(),n.getPrice(),n.getChangeP()));
+		});
+		return rpi;
 	}
 }

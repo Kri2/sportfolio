@@ -1,6 +1,7 @@
 # sportfolio
 stocks portfolio project
 Track your stocks portfolio performance, compare it to other users.
+
 ##<a href="http://sportfolio.us-east-2.elasticbeanstalk.com/">Live Demo</a> 
 
 ##What this app do (main features):

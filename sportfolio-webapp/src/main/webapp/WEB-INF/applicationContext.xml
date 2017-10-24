@@ -43,7 +43,9 @@
 	            <!-- Echo all executed SQL to stdout -->
 	            <property name="showSql" value="true" />
 	            <!-- SQL dialect -->
-	            <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+	            <!-- changed to MySQL5InnoDBDialect, MySQL5Dialect created myISAM tables which caused charges from AWS -->
+	            <property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+	            <!--  <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />-->
 	            <!--   <property name="databasePlatform" value="org.hibernate.dialect.MySQLMyISAMDialect" />-->
 	        </bean>
 	    </property>
@@ -52,6 +54,9 @@
 	        	<!-- Then Hibernate checks for the table. If table doesn’t exist then it creates a new table -->
 	            <prop key="hibernate.hbm2ddl.auto">update</prop>
 	            <!-- <prop key="hibernate.hbm2ddl.auto">create</prop>-->
+	            <!-- innodb, default was myISAM which caused me charges from AWS (not in free-tier) -->
+	            <!--  not sure about this one, probably wrong or not needed -->
+	            <!--  <prop key="hibernate.dialect.storage_engine">innodb</prop>-->
 	        </props>
 	    </property>
 	</bean>

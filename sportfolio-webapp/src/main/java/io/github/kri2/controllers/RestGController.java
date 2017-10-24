@@ -24,7 +24,7 @@ import io.github.kri2.domain.User;
  * if Jackson 2 is on the classpath, Spring's MappingJackson2HttpMessageConverter 
  * is automatically chosen to convert the RestGreeting instance to JSON
  */
-@RestController // every method returns a domain object, instead of a view, it's a shorhand for @Controller and @ResponseBody
+@RestController // every method returns a domain object, instead of a view, it's a shorthand for @Controller and @ResponseBody
 //@CrossOrigin//allows to test on localhost with no same origin problems
 public class RestGController {
 	private static final String template= "Hello, %s";

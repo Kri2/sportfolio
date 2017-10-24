@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.github.kri2.dataaccess.TickerByUser;
+
 @Entity	//indicating that it is a JPA entity
 @Table(name="users3")
 public class User {
@@ -25,6 +27,7 @@ public class User {
 	String password;
 	Boolean enabled;
 	/**
+	 * Elements of this list (PortfoliItem) provide information about one item in porfolio
 	 * The meaning of CascadeType.ALL is that the persistence will propagate (cascade) all 
 	 * EntityManager operations (PERSIST, REMOVE, REFRESH, MERGE, DETACH) to the relating 
 	 * entities.
@@ -36,10 +39,12 @@ public class User {
 	 */
 	@OneToMany(mappedBy = "owner",cascade=CascadeType.ALL,fetch=FetchType.EAGER, orphanRemoval=true)
 	private List<PortfolioItem> portfolioItems = new ArrayList<>(); 
-	public void addPortfolioItem(String ticker){
+	public void addPortfolioItem(TickerByUser tickerByUser){
 		PortfolioItem portfolioItem = new PortfolioItem();
 		portfolioItem.setOwner(this);
-		portfolioItem.setTicker(ticker);
+		portfolioItem.setTicker(tickerByUser.getTicker());
+		portfolioItem.setSharesCount(Double.valueOf(tickerByUser.getSharesCount()));
+		portfolioItem.setPurchasePrice(Double.valueOf(tickerByUser.getPurchasePrice()));
 		portfolioItem.setPrice(0.0);
 		portfolioItem.setChangeP(0.0);
 		this.portfolioItems.add(portfolioItem);

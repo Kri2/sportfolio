@@ -23,7 +23,8 @@ public class PortfolioItem {
 	private String ticker;
 	private Double price;
 	private Double changep;
-	
+	private Double sharesCount;
+	private Double purchasePrice;
 
 	//@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
 	//@ManyToOne(fetch=FetchType.EAGER)
@@ -56,6 +57,20 @@ public class PortfolioItem {
 	}
 	public void setChangeP(Double change) {
 		this.changep = change;
+	}
+	
+	public Double getSharesCount() {
+		return sharesCount;
+	}
+	public void setSharesCount(Double sharesCount) {
+		this.sharesCount = sharesCount;
+	}
+	
+	public Double getPurchasePrice() {
+		return purchasePrice;
+	}
+	public void setPurchasePrice(Double purchasePrice) {
+		this.purchasePrice = purchasePrice;
 	}
 	public User getOwner() {	
 		return owner;

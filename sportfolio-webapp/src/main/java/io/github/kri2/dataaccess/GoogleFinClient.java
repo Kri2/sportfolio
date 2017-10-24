@@ -47,9 +47,9 @@ public class GoogleFinClient implements StockDao {
 		Stock stock1=null;
 		try {
 					stock1 = mapper.readValue(string, Stock.class);
-					System.out.println(stock1.getPrice());
+					//System.out.println(stock1.getPrice());
 					System.out.println(stock1.getTicker());
-					System.out.println(stock1.getCp());
+					//System.out.println(stock1.getCp());
 		} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

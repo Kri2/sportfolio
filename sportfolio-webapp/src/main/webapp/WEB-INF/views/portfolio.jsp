@@ -19,10 +19,10 @@
 			<th>ticker</th>
 			<th>price</th>
 			<th>change</th>
-			<th>shares bought</th>
-			<th>purchase date</th>
-			<th>purchase price</th>
+			<th>#shares</th>
+			<th>$purchased</th>
 			<th>value</th>
+			<th>gained</th>
 			<th>remove</th>
 		</tr>
 		<c:forEach items="${portfolioItems}" var="stockInfo">
@@ -35,6 +35,18 @@
 				</td>
 				<td>
 					<c:out value="${stockInfo.changeP}%"/>
+				</td>
+				<td>
+					<c:out value="${stockInfo.sharesCount}"/>
+				</td>
+				<td>
+					<fmt:formatNumber type="currency" value="${stockInfo.purchasePrice}"/>
+				</td>
+				<td>
+					<fmt:formatNumber type="currency" value="${stockInfo.sharesCount * stockInfo.price}"/>
+				</td>
+				<td>
+					<fmt:formatNumber type="percent" maxFractionDigits="2" value="${(stockInfo.sharesCount)*(stockInfo.price-stockInfo.purchasePrice)/(stockInfo.purchasePrice*stockInfo.sharesCount)}"/>
 				</td>
 				<td>
 					<a href="<c:url value="/remove/${whoIsLoggedIn}/${stockInfo.ticker}"/>">x</a>

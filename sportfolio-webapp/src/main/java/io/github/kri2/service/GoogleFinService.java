@@ -3,6 +3,7 @@ package io.github.kri2.service;
 import org.springframework.stereotype.Service;
 
 import io.github.kri2.dataaccess.GoogleFinClient;
+import io.github.kri2.dataaccess.GoogleFinClient2;
 import io.github.kri2.domain.PortfolioItem;
 import io.github.kri2.domain.Stock;
 import io.github.kri2.domain.User;
@@ -16,7 +17,7 @@ public class GoogleFinService {
 			String currentTicker = item.getTicker();
 			System.out.println("Getting info about "+currentTicker);
 			
-			GoogleFinClient googleFinClient = new GoogleFinClient();
+			GoogleFinClient2 googleFinClient = new GoogleFinClient2();
 			Stock stock = googleFinClient.getStock( currentTicker );
 			if(stock!=null){
 				System.out.println("Result: " + stock.toString());

@@ -73,7 +73,7 @@ public class PortfolioController {
 		String authName = auth.getName();
 		
 		User user = userDao.findByName(authName);
-		user.addPortfolioItem(tickerByUser.getTicker());
+		user.addPortfolioItem(tickerByUser);
 		userDao.save(user);//powinno być update raczej, ale jeszcze nie wiem jak
 		return "redirect:/portfolio";
 	}

@@ -8,7 +8,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import io.github.kri2.dataaccess.GoogleFinClient2;
 import io.github.kri2.dataaccess.UserDao;
 import io.github.kri2.dataaccess.UserLogin;
+import io.github.kri2.domain.Stock;
 import io.github.kri2.domain.User;
 import io.github.kri2.service.JasperFile;
 import net.sf.jasperreports.engine.JRException;
@@ -41,6 +44,9 @@ import net.sf.jasperreports.export.SimplePdfReportConfiguration;
 
 @Controller
 public class WebController {
+	final static org.slf4j.Logger mojlog = LoggerFactory.getLogger(WebController.class);
+	
+	
 	@Value(value="classpath:files/file_to_read.txt")
 	private Resource moj_resource;
 	@Autowired
@@ -70,9 +76,12 @@ public class WebController {
 			return "welcome";
 		}
 	}
-	@RequestMapping("/welcome")
+	@RequestMapping("/testrest")
 	public String serveWelcome(Model model){
-		return "welcome";
+		GoogleFinClient2 gfc2=new GoogleFinClient2();
+		Stock stock = gfc2.getStock("AAPL");
+		System.out.println(stock.getTicker());
+		return "index";
 	}
 	/**
 	 * For testing file loading
@@ -215,6 +224,7 @@ public class WebController {
 	}
 	@RequestMapping("/")
 	public String serveIndex(Model model){
+		mojlog.info("hello world! by kriz"); // first logger code
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String authName = auth.getName();
 		model.addAttribute("whoIsLoggedIn", authName);

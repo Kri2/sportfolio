@@ -6,15 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Stock {
 	@JsonProperty("t")
 	private String ticker;
-	@JsonProperty("l_cur")
+	//@JsonProperty("l_cur")
+	@JsonProperty("l") //changed by Google in 09.2017
 	private String price;
 	private String cp;
-	public String getCp() {
-		return cp;
-	}
-	public void setCp(String cp) {
-		this.cp = cp;
-	}
 	public Stock(){
 	}
 	public String getTicker(){
@@ -22,6 +17,12 @@ public class Stock {
 	}
 	public void setTicker(String ticker){
 		this.ticker=ticker;
+	}
+	public String getCp() {
+		return cp;
+	}
+	public void setCp(String cp) {
+		this.cp = cp;
 	}
 	public String getPrice(){
 		return this.price;

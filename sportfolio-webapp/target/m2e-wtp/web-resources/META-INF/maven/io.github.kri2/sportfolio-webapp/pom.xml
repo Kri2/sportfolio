@@ -107,7 +107,12 @@
 	    <groupId>net.sf.jasperreports</groupId>
 	    <artifactId>jasperreports</artifactId>
 	    <version>6.1.0</version>
-	</dependency>	
+	</dependency>
+	<dependency>  
+   <groupId>ch.qos.logback</groupId>  
+   <artifactId>logback-classic</artifactId>  
+   <version>1.2.3</version>  
+ </dependency>  	
   </dependencies>
   <!-- <parent>...</parent> -->
   <!-- <dependencyManagement>...</dependencyManagement> -->

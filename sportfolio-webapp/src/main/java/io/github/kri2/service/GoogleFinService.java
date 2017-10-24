@@ -17,8 +17,8 @@ public class GoogleFinService {
 			String currentTicker = item.getTicker();
 			System.out.println("Getting info about "+currentTicker);
 			
-			GoogleFinClient2 googleFinClient = new GoogleFinClient2();
-			Stock stock = googleFinClient.getStock( currentTicker );
+			GoogleFinClient2 googleFinClient2 = new GoogleFinClient2();
+			Stock stock = googleFinClient2.getStock( currentTicker );
 			if(stock!=null){
 				System.out.println("Result: " + stock.toString());
 				//tutaj zrobić mapping do stock

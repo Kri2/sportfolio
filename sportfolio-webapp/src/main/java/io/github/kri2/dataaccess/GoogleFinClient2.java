@@ -30,6 +30,7 @@ public class GoogleFinClient2 implements StockDao{
 			System.out.println("========");
 			System.out.println(string);
 			System.out.println("========");
+			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			return null;
@@ -49,6 +50,8 @@ public class GoogleFinClient2 implements StockDao{
 							System.out.println(stock1.getPrice());
 							System.out.println(stock1.getTicker());
 							System.out.println(stock1.getCp());
+							//if ticker symbol is invalid response will come but will be emtpy
+							if(stock1.getTicker() == null)return null;
 				} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

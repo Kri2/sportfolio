@@ -19,6 +19,8 @@ id="WebApp_ID" version="3.0">
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<!--  spring security filters -->
+	<!-- "The filter must necessarily be named ‘springSecurityFilterChain’  to match the default bean created by Spring Security in the container."
+	 -->
 	<filter>
 	    <filter-name>springSecurityFilterChain</filter-name>
 	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

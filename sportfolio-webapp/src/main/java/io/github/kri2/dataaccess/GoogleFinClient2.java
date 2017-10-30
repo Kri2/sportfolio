@@ -28,7 +28,7 @@ public class GoogleFinClient2 implements StockDao{
 			//string = string.replace("//","").replace("\n","").replace("[","").replace("]","").replace("\t","");
 			string = string.replace("// [", "");
 			System.out.println("========");
-			System.out.println(string);
+			//System.out.println(string);
 			System.out.println("========");
 			
 		}catch(Exception e){

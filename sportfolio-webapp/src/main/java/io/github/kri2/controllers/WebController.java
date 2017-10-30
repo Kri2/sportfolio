@@ -46,7 +46,6 @@ import net.sf.jasperreports.export.SimplePdfReportConfiguration;
 public class WebController {
 	final static org.slf4j.Logger mojlog = LoggerFactory.getLogger(WebController.class);
 	
-	
 	@Value(value="classpath:files/file_to_read.txt")
 	private Resource moj_resource;
 	@Autowired
@@ -55,6 +54,10 @@ public class WebController {
 	
 	@RequestMapping(value="/start", method=RequestMethod.GET)
 	public String displayForm(Model model){
+		mojlog.info("WELCOME TO MY APP by kri2!");
+		System.out.println("log should be sent now...");
+		mojlog.error("testowy error");
+		
 		model.addAttribute("userForm", new UserLogin());
 		return "welcome";
 	}
@@ -62,6 +65,7 @@ public class WebController {
 	@RequestMapping(value="/start", method=RequestMethod.POST)
 	public String processForm(@ModelAttribute("userForm") UserLogin userLogin, 
 								Model model){
+		
 		System.out.println(userLogin.getName());
 		nameGlobal = userLogin.getName();
 		String result="";
@@ -224,7 +228,7 @@ public class WebController {
 	}
 	@RequestMapping("/")
 	public String serveIndex(Model model){
-		mojlog.info("hello world! by kriz"); // first logger code
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String authName = auth.getName();
 		model.addAttribute("whoIsLoggedIn", authName);

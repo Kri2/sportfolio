@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subreport_01" pageWidth="200" pageHeight="400" columnWidth="100" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d668ca4e-8ac2-4230-989e-54b631c8df4b">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="ticker" class="java.lang.String"/>
+	<field name="price" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="30" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="10" width="60" height="20" uuid="becd7ee4-e9ac-4a95-a974-5f638836fab9"/>
+				<textFieldExpression><![CDATA[$F{ticker}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="10" width="60" height="20" uuid="aa91df60-806b-4d2a-9391-7f4fa98e9d6a"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

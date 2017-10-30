@@ -1,0 +1,42 @@
+<configuration>
+  <!-- This configuration works with gmail, just need to reduce secuirty on gmail account:https://myaccount.google.com/lesssecureapps?pli=1 -->
+  <!--  
+  <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <smtpHost>smtp.gmail.com</smtpHost>
+        <smtpPort>587</smtpPort>
+        <STARTTLS>true</STARTTLS>
+        <username>xxx@gmail.com</username>
+        <password>xxx</password>
+        <to>christur@interia.pl</to>
+        <from>krzystof.turlej@gmail.com</from>
+        <subject>logback test</subject>
+        <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
+        <asynchronousSending>false</asynchronousSending>
+</appender>
+-->
+   <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <smtpHost>poczta.interia.pl</smtpHost>
+        <smtpPort>587</smtpPort>
+        <STARTTLS>true</STARTTLS>
+        <SSL>true</SSL>
+        <username>logs@interia.pl</username>
+        <password>1webapp</password>
+        <to>christur@interia.pl</to>
+        <from>logs@interia.pl</from>
+        <subject>logback test</subject>
+        <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
+        <asynchronousSending>false</asynchronousSending>
+  </appender>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">  
+   <!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->  
+   <encoder>  
+    <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>  
+   </encoder>  
+  </appender>  
+  
+  <root level="DEBUG">
+    <appender-ref ref="EMAIL"/>
+    <appender-ref ref="STDOUT"/>
+  </root>
+
+</configuration>

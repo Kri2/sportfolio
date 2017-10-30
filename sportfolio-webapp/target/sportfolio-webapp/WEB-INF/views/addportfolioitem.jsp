@@ -10,6 +10,7 @@
 	<form:form method="POST" modelAttribute="addItemForm">
 		<form:input type="text" path="ticker" placeholder="ticker"/>
 		<form:input type="text" path="sharesCount" placeholder="how many shares"/>
+		<form:input type="text" path="purchasePrice" placeholder="price when purchased"/>
 		<input type="submit" value="add"/>
 	</form:form>
 </div>

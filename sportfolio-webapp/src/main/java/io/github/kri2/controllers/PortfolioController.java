@@ -19,7 +19,11 @@ import io.github.kri2.dataaccess.UserDao;
 import io.github.kri2.domain.PortfolioItem;
 import io.github.kri2.domain.User;
 import io.github.kri2.service.GoogleFinService;
-
+/**
+ * The PorfolioController is responsible for portfolio operations
+ * @author kriz
+ *
+ */
 @Controller
 public class PortfolioController {
 	@Autowired
@@ -77,6 +81,12 @@ public class PortfolioController {
 		userDao.save(user);//powinno być update raczej, ale jeszcze nie wiem jak
 		return "redirect:/portfolio";
 	}
+	/**
+	 * The remove method removes item form porftfolio provied user and ticker symbol
+	 * @param userName
+	 * @param ticker
+	 * @return
+	 */
 	@RequestMapping(value="/remove/{user}/{ticker}")
 	public String remove(@PathVariable("user") String userName, @PathVariable("ticker") String ticker){
 		//load user data for provided userName

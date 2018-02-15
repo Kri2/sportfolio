@@ -16,6 +16,9 @@
 	
 	<!-- is used to determine the search of specific beans and attempt of autowiring. -->
 	<context:component-scan base-package="io.github.kri2" />
+	<!--  tutaj będą podane parametry bazy, np w src/main/resources/parametry.properties-->
+	<context:property-placeholder location="classpath:parametry.properties,classpath:datasource.properties"/>
+	
 	<tx:annotation-driven />
 	<context:annotation-config />
 	<mvc:annotation-driven />

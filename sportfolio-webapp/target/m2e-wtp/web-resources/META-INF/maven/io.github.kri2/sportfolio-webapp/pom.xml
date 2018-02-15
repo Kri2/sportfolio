@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- The Basics -->
+  <groupId>io.github.kri2</groupId>
+  <artifactId>sportfolio-webapp</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>portfolio-webapp Maven Webapp</name>
+  <url>https://kri2.github.io</url>
+  <dependencies>
+  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<!-- needed for: @Controller -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.0.1</version>
+	</dependency>
+	<!-- for database access -->
+	<!-- data source -->
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.6</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+	<dependency>
+	    <groupId>jstl</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+	<!-- pozwala użyć m.in. @Entity -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>5.2.10.Final</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-entitymanager</artifactId>
+	    <version>5.2.10.Final</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+	<!-- to do CrudRepository interface, (Spring Data JPA) -->
+	<dependency>
+	    <groupId>org.springframework.data</groupId>
+	    <artifactId>spring-data-jpa</artifactId>
+	    <version>1.11.4.RELEASE</version>
+	</dependency>
+	<!-- needed for json -->
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.8.9</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+	<dependency>
+	    <groupId>com.google.code.gson</groupId>
+	    <artifactId>gson</artifactId>
+	    <version>2.8.1</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-config</artifactId>
+	    <version>4.2.3.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-taglibs</artifactId>
+	    <version>4.2.3.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+	<dependency>
+	    <groupId>c3p0</groupId>
+	    <artifactId>c3p0</artifactId>
+	    <version>0.9.1.2</version>
+	</dependency>
+	<!-- for PDF report generation -->
+	<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+	<dependency>
+	    <groupId>net.sf.jasperreports</groupId>
+	    <artifactId>jasperreports</artifactId>
+	    <version>6.1.0</version>
+	</dependency>
+	<!-- for logging/logback -->
+	<!-- Note that in addition to logback-classic.jar, the above declaration 
+	     will automatically pull-in slf4j-api.jar and logback-core.jar into 
+	     your project by virtue of Maven's transitivity rules. 
+	-->
+	<dependency>  
+      <groupId>ch.qos.logback</groupId>  
+      <artifactId>logback-classic</artifactId>  
+      <version>1.2.3</version>  
+    </dependency>
+    <!-- not sure about this one -->
+    <dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-access</artifactId>
+  <version>1.2.3</version>
+</dependency>
+<dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>activation</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4</version>
+    </dependency>  
+    <!-- for logging/logback end-->	
+  </dependencies>
+  <!-- <parent>...</parent> -->
+  <!-- <dependencyManagement>...</dependencyManagement> -->
+  <!-- <modules>...</modules> -->
+  <!-- <properties>...</properties> -->
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
+  <!-- Build Settings -->
+  <build>
+    <finalName>sportfolio-webapp</finalName>
+  </build>
+  <!-- <reporting></reporting> -->
+  
+  <!-- More Project Information -->
+  <!-- <description>...</description> -->
+  <!-- <inceptionYear>...</inceptionYear> -->
+  <!-- <licenses>...</licenses> -->
+  <!-- <organization>...</organization> -->
+  <!-- <developers>...</developers> -->
+  <!-- <contributors>...</contributors> -->
+  
+  <!-- Environment Settings -->
+  <!-- <issueManagement>...</issueManagement> -->
+  <!-- <ciManagement>...</ciManagement> -->
+  <!-- <mailingLists>...</mailingLists> -->
+  <!-- <scm>...</scm> -->
+  <!-- <prerequisites>...</prerequisites> -->
+  <!-- <repositories>...</repositories> -->
+  <!-- <pluginRepositories>...</pluginRepositories> -->
+  <!-- <distributionManagement>...</distributionManagement> -->
+  <!-- <profiles>...</profiles> -->
+</project>

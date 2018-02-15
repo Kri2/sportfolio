@@ -25,19 +25,27 @@ import io.github.kri2.domain.User;
  * is automatically chosen to convert the RestGreeting instance to JSON
  */
 @RestController // every method returns a domain object, instead of a view, it's a shorthand for @Controller and @ResponseBody
-//@CrossOrigin//allows to test on localhost with no same origin problems
+@CrossOrigin//allows to test on localhost with no same origin problems
 public class RestGController {
-	private static final String template= "Hello, %s";
+	private static final String template = "Hello, %s";
 	private final AtomicLong counter = new AtomicLong();
 	@Autowired
 	UserDao userDao;
 	
-	
+	/**
+	 * greeting()
+	 * @param name
+	 * @return
+	 */
 	@RequestMapping("greeting")
 	public RestGreeting greeting(@RequestParam(value="name", defaultValue="World") String name){
 		return new RestGreeting(counter.incrementAndGet(), String.format(template, name));
 	}
-	//Returns list of users
+	
+	/**
+	 * userList()
+	 * @return list of users
+	 */
 	@RequestMapping("userslist")
 	public List<RestUser> userList(){
 		//Iterable<User> list = userDao.findAll();
@@ -48,7 +56,12 @@ public class RestGController {
 		//source.iterator().forEachRemaining(target::add);
 		return names;
 	}
-	//returns desired user's portfolio contents
+	
+	/**
+	 * portfolioItemsList()
+	 * @param id
+	 * @return desired user's portfolio contents
+	 */
 	@RequestMapping("/{id}")
 	public List<RestPortfolioItem> portfolioItemsList(@PathVariable Long id){
 		User user = userDao.findById(id);

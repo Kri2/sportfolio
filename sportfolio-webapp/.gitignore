@@ -1,2 +1,2 @@
 #ignore the file with database info
-datasource.properties
+datasource-*.properties

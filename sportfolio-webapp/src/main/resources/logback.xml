@@ -8,7 +8,7 @@
         <username>xxx@gmail.com</username>
         <password>xxx</password>
         <to>christur@interia.pl</to>
-        <from>krzystof.turlej@gmail.com</from>
+        <from>xxx@gmail.com</from>
         <subject>logback test</subject>
         <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
         <asynchronousSending>false</asynchronousSending>
@@ -20,7 +20,7 @@
         <STARTTLS>true</STARTTLS>
         <SSL>true</SSL>
         <username>logs@interia.pl</username>
-        <password>1webapp</password>
+        <password>xxx</password>
         <to>christur@interia.pl</to>
         <from>logs@interia.pl</from>
         <subject>logback test</subject>
